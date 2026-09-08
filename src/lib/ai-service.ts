@@ -306,7 +306,10 @@ Is there a specific meal or ingredient you'd like me to analyze for you?`;
         carbsG: updatedTargets.carbsG,
         fatsG: updatedTargets.fatsG,
       },
-
+      costSavingsInr,
+      summaryExplanation,
+      keyChanges,
+      aiAdvice,
     };
   }
 }
