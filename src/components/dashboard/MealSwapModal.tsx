@@ -57,38 +57,38 @@ export const MealSwapModal: React.FC<MealSwapModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-surface-DEFAULT border border-emerald-500/30 rounded-3xl p-6 md:p-8 shadow-glass max-h-[90vh] overflow-y-auto custom-scrollbar">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary-950/40 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl bg-white border border-gold-600/30 rounded-3xl p-6 md:p-8 shadow-luxury-lg max-h-[90vh] overflow-y-auto custom-scrollbar">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-surface-100 border border-slate-800 text-slate-400 hover:text-white transition z-10"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-surface-100 border border-surface-300 text-primary-900/60 hover:text-primary-950 transition z-10"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shadow-glow-sm">
+          <div className="p-3 rounded-2xl bg-gold-50 border border-gold-400/40 text-gold-700 shadow-luxury-sm">
             <RefreshCw className="w-6 h-6 animate-spin-slow" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="font-serif text-xl font-bold text-primary-950 flex items-center gap-2">
               AI Intelligent Meal Swap
-              <span className="text-[10px] uppercase tracking-wider font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+              <span className="text-[10px] uppercase tracking-wider font-extrabold bg-primary-50 text-primary-800 border border-primary-200 px-2.5 py-0.5 rounded-full">
                 Adaptive
               </span>
             </h3>
-            <p className="text-xs text-slate-400">
-              Swapping: <strong className="text-white">{meal.name}</strong> ({meal.calories} kcal • {meal.proteinG}g protein)
+            <p className="text-xs text-primary-900/70 mt-0.5">
+              Swapping: <strong className="text-primary-950">{meal.name}</strong> ({meal.calories} kcal • {meal.proteinG}g protein)
             </p>
           </div>
         </div>
 
         {/* Swap Reason Selector */}
         <div className="mb-6">
-          <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-2.5">
+          <label className="text-xs font-bold text-primary-950 uppercase tracking-wider block mb-2.5">
             Why do you want to swap?
           </label>
           <div className="flex flex-wrap gap-2">
@@ -100,8 +100,8 @@ export const MealSwapModal: React.FC<MealSwapModalProps> = ({
                   onClick={() => setSelectedReason(reason.id)}
                   className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition ${
                     isSelected
-                      ? 'bg-emerald-500 text-slate-950 shadow-glow-sm font-bold'
-                      : 'bg-surface-100 text-slate-300 border border-slate-800 hover:border-slate-700'
+                      ? 'bg-gradient-to-r from-primary-900 to-primary-800 text-gold-200 border border-gold-500/40 shadow-sm font-bold'
+                      : 'bg-surface-100 text-primary-900/80 border border-surface-300 hover:border-gold-500/30'
                   }`}
                 >
                   {reason.label}
@@ -114,8 +114,8 @@ export const MealSwapModal: React.FC<MealSwapModalProps> = ({
         {/* AI Processing / Alternatives View */}
         {isGenerating ? (
           <div className="p-12 text-center flex flex-col items-center justify-center">
-            <Sparkles className="w-8 h-8 text-emerald-400 animate-spin mb-3" />
-            <p className="text-xs font-medium text-slate-300">
+            <div className="spinner-border mb-3" />
+            <p className="text-xs font-semibold text-primary-900">
               AI is computing bio-equivalent macro alternatives...
             </p>
           </div>
@@ -126,56 +126,56 @@ export const MealSwapModal: React.FC<MealSwapModalProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               
               {/* Original Meal */}
-              <div className="p-4 rounded-2xl bg-surface-100/60 border border-slate-800/80">
-                <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider block mb-1">
+              <div className="p-4 rounded-2xl bg-surface-100/70 border border-surface-300">
+                <span className="text-[10px] uppercase font-bold text-primary-900/60 tracking-wider block mb-1">
                   Current Meal
                 </span>
-                <h4 className="text-sm font-bold text-white mb-2 line-clamp-1">{meal.name}</h4>
-                <div className="grid grid-cols-3 gap-1.5 text-center text-xs py-2 bg-surface-200/50 rounded-xl">
+                <h4 className="font-serif text-sm font-bold text-primary-950 mb-2 line-clamp-1">{meal.name}</h4>
+                <div className="grid grid-cols-3 gap-1.5 text-center text-xs py-2 bg-white rounded-xl border border-surface-200">
                   <div>
-                    <span className="text-[10px] text-slate-500 block">Calories</span>
-                    <span className="font-bold text-slate-300">{meal.calories}</span>
+                    <span className="text-[10px] text-primary-900/60 block font-medium">Calories</span>
+                    <span className="font-bold text-primary-950">{meal.calories}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-500 block">Protein</span>
-                    <span className="font-bold text-cyan-300">{meal.proteinG}g</span>
+                    <span className="text-[10px] text-primary-900/60 block font-medium">Protein</span>
+                    <span className="font-bold text-gold-800">{meal.proteinG}g</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-500 block">Cost</span>
-                    <span className="font-bold text-amber-300">₹{meal.estimatedCostInr}</span>
+                    <span className="text-[10px] text-primary-900/60 block font-medium">Cost</span>
+                    <span className="font-bold text-primary-900">₹{meal.estimatedCostInr}</span>
                   </div>
                 </div>
               </div>
 
               {/* AI Recommended Swap */}
-              <div className="p-4 rounded-2xl bg-emerald-950/30 border-2 border-emerald-500/50 shadow-glow-sm relative">
+              <div className="p-4 rounded-2xl bg-gold-50/50 border-2 border-gold-500/60 shadow-luxury-sm relative">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">
+                  <span className="text-[10px] uppercase font-bold text-gold-800 tracking-wider">
                     AI Alternative
                   </span>
-                  <span className="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold text-primary-900 bg-primary-100 px-2 py-0.5 rounded-full border border-primary-200">
                     Score: {currentSwap.alternativeMeal.aiScore}/100
                   </span>
                 </div>
-                <h4 className="text-sm font-bold text-white mb-2 line-clamp-1">
+                <h4 className="font-serif text-sm font-bold text-primary-950 mb-2 line-clamp-1">
                   {currentSwap.alternativeMeal.name}
                 </h4>
-                <div className="grid grid-cols-3 gap-1.5 text-center text-xs py-2 bg-surface-100/80 rounded-xl border border-emerald-500/20">
+                <div className="grid grid-cols-3 gap-1.5 text-center text-xs py-2 bg-white rounded-xl border border-gold-500/20">
                   <div>
-                    <span className="text-[10px] text-slate-400 block">Calories</span>
-                    <span className={`font-bold ${currentSwap.calorieDelta < 0 ? 'text-emerald-400' : 'text-slate-200'}`}>
+                    <span className="text-[10px] text-primary-900/60 block font-medium">Calories</span>
+                    <span className={`font-bold ${currentSwap.calorieDelta < 0 ? 'text-primary-800' : 'text-primary-950'}`}>
                       {currentSwap.alternativeMeal.calories} ({currentSwap.calorieDelta > 0 ? `+${currentSwap.calorieDelta}` : currentSwap.calorieDelta})
                     </span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 block">Protein</span>
-                    <span className={`font-bold ${currentSwap.proteinDelta >= 0 ? 'text-cyan-400' : 'text-slate-200'}`}>
+                    <span className="text-[10px] text-primary-900/60 block font-medium">Protein</span>
+                    <span className={`font-bold ${currentSwap.proteinDelta >= 0 ? 'text-gold-700' : 'text-primary-950'}`}>
                       {currentSwap.alternativeMeal.proteinG}g ({currentSwap.proteinDelta > 0 ? `+${currentSwap.proteinDelta}` : currentSwap.proteinDelta})
                     </span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 block">Cost</span>
-                    <span className={`font-bold ${currentSwap.costDeltaInr < 0 ? 'text-amber-400' : 'text-slate-200'}`}>
+                    <span className="text-[10px] text-primary-900/60 block font-medium">Cost</span>
+                    <span className={`font-bold ${currentSwap.costDeltaInr < 0 ? 'text-emerald-700' : 'text-primary-950'}`}>
                       ₹{currentSwap.alternativeMeal.estimatedCostInr}
                     </span>
                   </div>
@@ -185,13 +185,13 @@ export const MealSwapModal: React.FC<MealSwapModalProps> = ({
             </div>
 
             {/* AI Explanation Callout */}
-            <div className="p-4 rounded-2xl bg-surface-100/90 border border-emerald-500/30 flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="p-4 rounded-2xl bg-white border border-gold-600/30 flex items-start gap-3 shadow-luxury-sm">
+              <Sparkles className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
               <div>
-                <span className="text-xs font-bold text-emerald-300 block mb-0.5">
+                <span className="text-xs font-bold text-primary-950 block mb-0.5">
                   Saarthi Nutritionist Rationale
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-primary-900/80 leading-relaxed">
                   {currentSwap.aiRationale}
                 </p>
               </div>
@@ -200,15 +200,15 @@ export const MealSwapModal: React.FC<MealSwapModalProps> = ({
             {/* If multiple alternatives exist */}
             {swapOptions.length > 1 && (
               <div className="flex items-center gap-2 pt-2">
-                <span className="text-xs text-slate-400 font-medium">Other AI Suggestions:</span>
+                <span className="text-xs text-primary-900/70 font-semibold">Other AI Suggestions:</span>
                 {swapOptions.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedSwapIndex(idx)}
                     className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
                       selectedSwapIndex === idx
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                        : 'bg-surface-100 text-slate-400 hover:text-white'
+                        ? 'bg-primary-900 text-gold-200 border border-gold-500/40'
+                        : 'bg-surface-100 text-primary-900/70 hover:text-primary-950 border border-surface-300'
                     }`}
                   >
                     Option #{idx + 1}
@@ -218,18 +218,18 @@ export const MealSwapModal: React.FC<MealSwapModalProps> = ({
             )}
 
             {/* Action buttons */}
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-surface-200">
               <button
                 onClick={onClose}
-                className="px-4 py-2.5 rounded-xl bg-surface-100 hover:bg-slate-800 text-xs font-semibold text-slate-400 transition"
+                className="px-4 py-2.5 rounded-xl bg-surface-100 hover:bg-surface-200 text-xs font-bold text-primary-900 transition"
               >
                 Cancel
               </button>
               <button
                 onClick={handleApplySwap}
-                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-bold transition shadow-glow-sm flex items-center gap-2"
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary-900 to-primary-800 hover:from-primary-800 text-gold-200 border border-gold-500/40 text-xs font-bold transition shadow-luxury-sm flex items-center gap-2"
               >
-                <Check className="w-4 h-4" />
+                <Check className="w-4 h-4 text-gold-300" />
                 Confirm AI Swap
               </button>
             </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, Sparkles, Lock, Mail, User, CheckCircle2, AlertCircle, Eye, EyeOff, Loader2, ShieldCheck, ArrowRight } from 'lucide-react';
+import { X, Sparkles, Lock, Mail, User, CheckCircle2, AlertCircle, Eye, EyeOff, ShieldCheck, ArrowRight } from 'lucide-react';
 import { useNutrition } from '../../context/NutritionContext';
 import confetti from 'canvas-confetti';
 
@@ -72,7 +72,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           particleCount: 50,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#10b981', '#14b8a6', '#06b6d4', '#f59e0b'],
+          colors: ['#047857', '#c8931d', '#10b981', '#f59e0b'],
         });
       } catch {}
 
@@ -102,7 +102,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           particleCount: 40,
           spread: 60,
           origin: { y: 0.6 },
-          colors: ['#10b981', '#14b8a6', '#06b6d4'],
+          colors: ['#047857', '#c8931d', '#10b981'],
         });
       } catch {}
       setTimeout(() => {
@@ -116,30 +116,30 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-md bg-surface-DEFAULT border border-emerald-500/30 rounded-3xl p-6 md:p-8 shadow-glass overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary-950/40 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-md bg-white border border-gold-600/30 rounded-3xl p-6 md:p-8 shadow-luxury-lg overflow-hidden">
         
         {/* Top glow ambient effect */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-56 h-24 bg-gradient-to-b from-emerald-500/25 to-teal-500/5 blur-2xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-56 h-24 bg-gradient-to-b from-gold-400/20 to-transparent blur-2xl pointer-events-none" />
 
         {/* Close Button */}
         <button
           onClick={handleClose}
           disabled={isLoading}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-surface-100 border border-slate-800 text-slate-400 hover:text-white transition disabled:opacity-50"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-surface-100 border border-surface-300 text-primary-900/60 hover:text-primary-950 transition disabled:opacity-50"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Header */}
         <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto mb-3 shadow-glow-sm">
-            <Sparkles className="w-6 h-6 text-emerald-400" />
+          <div className="w-12 h-12 rounded-2xl bg-gold-50 border border-gold-400/40 flex items-center justify-center mx-auto mb-3 shadow-luxury-sm">
+            <Sparkles className="w-6 h-6 text-gold-700" />
           </div>
-          <h3 className="text-xl font-bold text-white tracking-tight">
+          <h3 className="font-serif text-xl font-bold text-primary-950 tracking-tight">
             {isSignUp ? 'Join NutriSaarthi' : 'Welcome Back'}
           </h3>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-primary-900/70 mt-1">
             {isSignUp
               ? 'Start your personalized AI nutrition & meal journey.'
               : 'Sign in to access your synchronized diet plans & logs.'}
@@ -148,7 +148,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
         {/* Error Alert */}
         {errorMessage && (
-          <div className="mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-2.5 text-rose-400 text-xs animate-in fade-in duration-150">
+          <div className="mb-4 p-3 rounded-xl bg-rose-50 border border-rose-200 flex items-start gap-2.5 text-rose-700 text-xs animate-in fade-in duration-150">
             <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
             <span>{errorMessage}</span>
           </div>
@@ -156,8 +156,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
         {/* Success Alert */}
         {successMessage && (
-          <div className="mb-4 p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center gap-2.5 text-emerald-300 text-xs font-semibold animate-in zoom-in-95 duration-200">
-            <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
+          <div className="mb-4 p-3 rounded-xl bg-primary-50 border border-primary-200 flex items-center gap-2.5 text-primary-900 text-xs font-bold animate-in zoom-in-95 duration-200">
+            <CheckCircle2 className="w-4 h-4 shrink-0 text-primary-700" />
             <span>{successMessage}</span>
           </div>
         )}
@@ -166,9 +166,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         <form onSubmit={handleSubmit} className="space-y-3.5">
           {isSignUp && (
             <div>
-              <label className="text-xs font-medium text-slate-300 block mb-1">Full Name</label>
+              <label className="text-xs font-bold text-primary-950 block mb-1">Full Name</label>
               <div className="relative">
-                <User className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <User className="w-4 h-4 text-primary-700/60 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   required
@@ -176,16 +176,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   disabled={isLoading}
-                  className="w-full pl-9 pr-3 py-2.5 bg-surface-100 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition disabled:opacity-50"
+                  className="w-full pl-9 pr-3 py-2.5 bg-surface-100 border border-surface-300 rounded-xl text-xs text-primary-950 placeholder-primary-900/40 focus:outline-none focus:border-gold-600 transition disabled:opacity-50"
                 />
               </div>
             </div>
           )}
 
           <div>
-            <label className="text-xs font-medium text-slate-300 block mb-1">Email Address</label>
+            <label className="text-xs font-bold text-primary-950 block mb-1">Email Address</label>
             <div className="relative">
-              <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Mail className="w-4 h-4 text-primary-700/60 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="email"
                 required
@@ -193,15 +193,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}
-                className="w-full pl-9 pr-3 py-2.5 bg-surface-100 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition disabled:opacity-50"
+                className="w-full pl-9 pr-3 py-2.5 bg-surface-100 border border-surface-300 rounded-xl text-xs text-primary-950 placeholder-primary-900/40 focus:outline-none focus:border-gold-600 transition disabled:opacity-50"
               />
             </div>
           </div>
 
           <div>
-            <label className="text-xs font-medium text-slate-300 block mb-1">Password</label>
+            <label className="text-xs font-bold text-primary-950 block mb-1">Password</label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Lock className="w-4 h-4 text-primary-700/60 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 required
@@ -209,13 +209,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
-                className="w-full pl-9 pr-10 py-2.5 bg-surface-100 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition disabled:opacity-50"
+                className="w-full pl-9 pr-10 py-2.5 bg-surface-100 border border-surface-300 rounded-xl text-xs text-primary-950 placeholder-primary-900/40 focus:outline-none focus:border-gold-600 transition disabled:opacity-50"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 tabIndex={-1}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-primary-700/60 hover:text-primary-950 transition"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -225,16 +225,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs shadow-glow-sm hover:shadow-glow-md transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-primary-900 via-primary-800 to-primary-900 hover:from-primary-800 hover:to-primary-700 text-gold-200 border border-gold-500/40 font-bold text-xs shadow-luxury-sm hover:shadow-gold-glow transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
+                <div className="spinner-border spinner-border-sm" />
                 <span>{isSignUp ? 'Creating Profile...' : 'Authenticating...'}</span>
               </>
             ) : (
               <>
-                <ShieldCheck className="w-4 h-4 text-slate-950" />
+                <ShieldCheck className="w-4 h-4 text-gold-300" />
                 <span>{isSignUp ? 'Create My Account' : 'Sign In'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </>
@@ -243,14 +243,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         </form>
 
         {/* Quick Demo Login Option */}
-        <div className="mt-4 pt-4 border-t border-slate-800/80">
-          <p className="text-[11px] text-center text-slate-400 mb-2">Or test instantly with 1-click:</p>
+        <div className="mt-4 pt-4 border-t border-surface-200">
+          <p className="text-[11px] text-center text-primary-900/70 font-semibold mb-2">Or test instantly with 1-click:</p>
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
               disabled={isLoading}
               onClick={() => handleDemoSignIn('arjun.sharma@example.com', 'Arjun Sharma')}
-              className="px-2.5 py-2 rounded-xl bg-surface-100 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/30 text-[11px] text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5"
+              className="px-2.5 py-2 rounded-xl bg-surface-100 hover:bg-surface-200 border border-surface-300 text-[11px] text-primary-950 font-bold transition flex items-center justify-center gap-1.5 shadow-sm"
             >
               <span>👤 Arjun (Demo)</span>
             </button>
@@ -258,7 +258,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               type="button"
               disabled={isLoading}
               onClick={() => handleDemoSignIn('priya.patel@example.com', 'Priya Patel')}
-              className="px-2.5 py-2 rounded-xl bg-surface-100 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/30 text-[11px] text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5"
+              className="px-2.5 py-2 rounded-xl bg-surface-100 hover:bg-surface-200 border border-surface-300 text-[11px] text-primary-950 font-bold transition flex items-center justify-center gap-1.5 shadow-sm"
             >
               <span>👩 Priya (Demo)</span>
             </button>
@@ -274,7 +274,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               setErrorMessage('');
               setSuccessMessage('');
             }}
-            className="text-xs text-slate-400 hover:text-emerald-400 transition"
+            className="text-xs text-primary-900/70 hover:text-gold-700 font-medium transition"
           >
             {isSignUp
               ? 'Already have an account? Sign in'
@@ -285,4 +285,3 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     </div>
   );
 };
-

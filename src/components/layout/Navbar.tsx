@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Sparkles, Leaf, Menu, X, Bot, Zap, User, RotateCcw, LogOut, LogIn, ChevronDown } from 'lucide-react';
+import { Sparkles, Leaf, Menu, X, Zap, User, RotateCcw, LogOut, LogIn, ChevronDown } from 'lucide-react';
 import { useNutrition } from '../../context/NutritionContext';
 import { AuthModal } from '../auth/AuthModal';
 
@@ -46,30 +46,32 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-surface-200/80 backdrop-blur-xl border-b border-emerald-500/20 shadow-glass py-3'
+            ? 'bg-[#FAF7F2]/90 backdrop-blur-xl border-b border-primary-900/10 shadow-luxury-md py-3'
             : 'bg-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Brand Logo */}
-          <Link href="/" prefetch={true} className="flex items-center gap-2.5 group cursor-pointer active:scale-95 transition-transform">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 p-0.5 shadow-glow-sm group-hover:shadow-glow-md transition-all duration-300">
-              <div className="w-full h-full bg-surface rounded-[10px] flex items-center justify-center relative overflow-hidden">
-                <Leaf className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
-                <Sparkles className="w-3.5 h-3.5 text-cyan-300 absolute top-1.5 right-1.5 animate-pulse" />
+          <Link href="/" prefetch={true} className="flex items-center gap-3 group cursor-pointer active:scale-95 transition-transform">
+            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary-800 via-primary-700 to-gold-600 p-0.5 shadow-luxury-sm group-hover:shadow-gold-glow transition-all duration-300">
+              <div className="w-full h-full bg-[#FAF7F2] rounded-[10px] flex items-center justify-center relative overflow-hidden">
+                <Leaf className="w-5 h-5 text-primary-800 group-hover:scale-110 transition-transform duration-300" />
+                <Sparkles className="w-3.5 h-3.5 text-gold-500 absolute top-1 right-1 animate-pulse" />
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tight text-white flex items-center gap-1">
-                Nutri<span className="text-emerald-400 font-extrabold">Saarthi</span>
+              <span className="font-serif text-2xl font-bold tracking-tight text-primary-950 flex items-center gap-1">
+                Nutri<span className="text-gradient-emerald-gold font-extrabold italic">Saarthi</span>
               </span>
-              <span className="text-[9px] uppercase tracking-widest text-slate-400 font-semibold -mt-1">AI Nutrition Intelligence</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-primary-800/70 font-semibold -mt-1">
+                Bio-Nutrition Intelligence
+              </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-surface-100/60 border border-slate-800/80 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <nav className="hidden lg:flex items-center gap-1.5 bg-white/80 border border-primary-900/10 rounded-full px-4 py-1.5 backdrop-blur-md shadow-luxury-sm">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -77,10 +79,10 @@ export const Navbar: React.FC = () => {
                   key={link.href}
                   href={link.href}
                   prefetch={true}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 ${
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 ${
                     isActive
-                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-glow-sm'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                      ? 'bg-gradient-to-r from-primary-900 to-primary-800 text-gold-200 shadow-sm border border-gold-500/30'
+                      : 'text-primary-900/80 hover:text-primary-950 hover:bg-surface-200/70'
                   }`}
                 >
                   {link.label}
@@ -95,27 +97,29 @@ export const Navbar: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="flex items-center gap-2 bg-surface-100/80 hover:bg-surface-100 border border-emerald-500/30 rounded-full px-3 py-1 text-xs transition cursor-pointer"
+                className="flex items-center gap-2 bg-white/90 hover:bg-surface-100 border border-gold-600/30 rounded-full px-3.5 py-1.5 text-xs text-primary-950 shadow-luxury-sm transition cursor-pointer"
               >
                 <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-600"></span>
                 </span>
-                <span className="font-semibold text-slate-100 max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
-                <span className="text-[10px] text-amber-400 font-bold bg-amber-500/10 px-1.5 py-0.2 rounded border border-amber-500/20">🔥 {streakDays}d</span>
-                <ChevronDown className="w-3 h-3 text-slate-400" />
+                <span className="font-bold text-primary-950 max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
+                <span className="text-[10px] text-gold-700 font-extrabold bg-gold-100 px-2 py-0.5 rounded-full border border-gold-400/40">
+                  🔥 {streakDays}d
+                </span>
+                <ChevronDown className="w-3 h-3 text-primary-700/60" />
               </button>
 
               {/* Profile Dropdown */}
               {userDropdownOpen && (
                 <div
-                  className="absolute right-0 mt-2 w-56 rounded-2xl bg-surface-100 border border-emerald-500/30 p-2 shadow-glass backdrop-blur-xl z-50 animate-in fade-in zoom-in-95 duration-150"
+                  className="absolute right-0 mt-2 w-60 rounded-2xl bg-white border border-gold-600/30 p-2 shadow-luxury-lg backdrop-blur-xl z-50 animate-in fade-in zoom-in-95 duration-150"
                   onMouseLeave={() => setUserDropdownOpen(false)}
                 >
-                  <div className="px-3 py-2 border-b border-slate-800">
-                    <p className="text-xs font-bold text-white truncate">{user.name}</p>
-                    <p className="text-[11px] text-emerald-400 truncate">{user.email}</p>
-                    <span className="inline-block mt-1 text-[9px] uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 font-bold border border-emerald-500/20">
+                  <div className="px-3 py-2.5 border-b border-surface-200 bg-surface-100/50 rounded-xl mb-1">
+                    <p className="text-xs font-bold text-primary-950 truncate">{user.name}</p>
+                    <p className="text-[11px] text-primary-700 truncate">{user.email}</p>
+                    <span className="inline-block mt-1 text-[9px] uppercase tracking-wider px-2 py-0.5 rounded bg-primary-50 text-primary-800 font-bold border border-primary-200">
                       {isAuthenticated ? 'Active Profile' : 'Demo Profile'}
                     </span>
                   </div>
@@ -126,9 +130,9 @@ export const Navbar: React.FC = () => {
                         setAuthModalOpen(true);
                         setUserDropdownOpen(false);
                       }}
-                      className="w-full px-3 py-2 rounded-xl text-left text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 transition"
+                      className="w-full px-3 py-2 rounded-xl text-left text-xs text-primary-900 hover:text-primary-950 hover:bg-surface-100 flex items-center gap-2 transition"
                     >
-                      <User className="w-3.5 h-3.5 text-emerald-400" />
+                      <User className="w-3.5 h-3.5 text-primary-700" />
                       <span>{isAuthenticated ? 'Switch Account' : 'Sign In with Email'}</span>
                     </button>
 
@@ -138,9 +142,9 @@ export const Navbar: React.FC = () => {
                           resetToDemo();
                           setUserDropdownOpen(false);
                         }}
-                        className="w-full px-3 py-2 rounded-xl text-left text-xs text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 transition"
+                        className="w-full px-3 py-2 rounded-xl text-left text-xs text-primary-900 hover:text-primary-950 hover:bg-surface-100 flex items-center gap-2 transition"
                       >
-                        <RotateCcw className="w-3.5 h-3.5 text-cyan-400" />
+                        <RotateCcw className="w-3.5 h-3.5 text-gold-600" />
                         <span>Reset Demo Data</span>
                       </button>
                     )}
@@ -151,7 +155,7 @@ export const Navbar: React.FC = () => {
                           logout();
                           setUserDropdownOpen(false);
                         }}
-                        className="w-full px-3 py-2 rounded-xl text-left text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 flex items-center gap-2 transition"
+                        className="w-full px-3 py-2 rounded-xl text-left text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 flex items-center gap-2 transition"
                       >
                         <LogOut className="w-3.5 h-3.5" />
                         <span>Sign Out</span>
@@ -166,9 +170,9 @@ export const Navbar: React.FC = () => {
             {!isAuthenticated && (
               <button
                 onClick={() => setAuthModalOpen(true)}
-                className="px-3.5 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5"
+                className="px-3.5 py-1.5 text-xs font-semibold text-primary-900 hover:text-primary-950 transition flex items-center gap-1.5"
               >
-                <LogIn className="w-3.5 h-3.5 text-emerald-400" />
+                <LogIn className="w-3.5 h-3.5 text-gold-600" />
                 <span>Sign In</span>
               </button>
             )}
@@ -176,18 +180,17 @@ export const Navbar: React.FC = () => {
             <Link
               href="/onboarding"
               prefetch={true}
-              className="relative group px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 shadow-glow-sm hover:shadow-glow-md transition-all duration-300 flex items-center gap-1.5 cursor-pointer active:scale-95"
+              className="relative group px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-primary-900 via-primary-800 to-primary-900 hover:from-primary-800 hover:to-primary-700 border border-gold-500/40 shadow-luxury-sm hover:shadow-gold-glow transition-all duration-300 flex items-center gap-1.5 cursor-pointer active:scale-95"
             >
-              <Zap className="w-3.5 h-3.5 text-slate-950 fill-current" />
+              <Zap className="w-3.5 h-3.5 text-gold-400 fill-current" />
               <span>Build My Diet</span>
             </Link>
           </div>
 
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl bg-surface-100 border border-slate-800 text-slate-300 hover:text-white"
+            className="lg:hidden p-2 rounded-xl bg-white border border-primary-900/10 text-primary-900 hover:text-primary-950 shadow-luxury-sm"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -196,19 +199,21 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Slide-down Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-surface-DEFAULT/95 border-b border-emerald-500/20 backdrop-blur-2xl px-6 py-6 space-y-3 animate-in slide-in-from-top-4 duration-300">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+          <div className="lg:hidden bg-[#FAF7F2]/98 border-b border-gold-600/20 backdrop-blur-2xl px-6 py-6 space-y-3 animate-in slide-in-from-top-4 duration-300 shadow-luxury-lg">
+            <div className="flex items-center justify-between pb-3 border-b border-surface-200">
               <div className="flex items-center gap-2">
-                <User className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm font-bold text-white">{user.name}</span>
-                <span className="text-xs text-amber-400 font-semibold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">🔥 {streakDays}d streak</span>
+                <User className="w-4 h-4 text-primary-700" />
+                <span className="text-sm font-bold text-primary-950">{user.name}</span>
+                <span className="text-xs text-gold-800 font-bold bg-gold-100 px-2.5 py-0.5 rounded-full border border-gold-300">
+                  🔥 {streakDays}d streak
+                </span>
               </div>
               <button
                 onClick={() => {
                   resetToDemo();
                   setMobileMenuOpen(false);
                 }}
-                className="text-xs text-slate-400 hover:text-emerald-400 flex items-center gap-1"
+                className="text-xs text-primary-700 hover:text-primary-950 flex items-center gap-1"
               >
                 <RotateCcw className="w-3 h-3" /> Reset Demo
               </button>
@@ -225,8 +230,8 @@ export const Navbar: React.FC = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-3 py-2.5 rounded-xl text-xs font-semibold transition cursor-pointer active:scale-95 ${
                       isActive
-                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                        : 'bg-surface-100 text-slate-300 hover:bg-slate-800'
+                        ? 'bg-primary-900 text-gold-200 border border-gold-500/40 shadow-sm'
+                        : 'bg-white text-primary-900 hover:bg-surface-200 border border-primary-900/10'
                     }`}
                   >
                     {link.label}
@@ -240,7 +245,7 @@ export const Navbar: React.FC = () => {
                 href="/onboarding"
                 prefetch={true}
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 rounded-xl text-center text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 shadow-glow-sm cursor-pointer active:scale-95"
+                className="w-full py-3 rounded-xl text-center text-xs font-bold text-white bg-gradient-to-r from-primary-900 via-primary-800 to-primary-900 shadow-luxury-md cursor-pointer active:scale-95 border border-gold-500/30"
               >
                 Create New AI Diet Plan
               </Link>
@@ -249,7 +254,7 @@ export const Navbar: React.FC = () => {
                   setAuthModalOpen(true);
                   setMobileMenuOpen(false);
                 }}
-                className="w-full py-2.5 rounded-xl text-center text-xs font-semibold text-slate-300 bg-surface-100 border border-slate-800 hover:text-white"
+                className="w-full py-2.5 rounded-xl text-center text-xs font-semibold text-primary-900 bg-white border border-primary-900/10 hover:bg-surface-100"
               >
                 {isAuthenticated ? 'Switch Profile' : 'Sign In with Email'}
               </button>
@@ -260,7 +265,7 @@ export const Navbar: React.FC = () => {
                     logout();
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full py-2.5 rounded-xl text-center text-xs font-semibold text-rose-400 bg-rose-500/10 border border-rose-500/20 hover:text-rose-300"
+                  className="w-full py-2.5 rounded-xl text-center text-xs font-semibold text-rose-600 bg-rose-50 border border-rose-200 hover:text-rose-700"
                 >
                   Sign Out
                 </button>

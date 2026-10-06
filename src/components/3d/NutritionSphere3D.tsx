@@ -27,39 +27,39 @@ export const NutritionSphere3D: React.FC = () => {
     const ecosystemGroup = new THREE.Group();
     scene.add(ecosystemGroup);
 
-    // 1. Central Core Sphere (Icosahedron / Bio-crystal)
+    // 1. Central Core Sphere (Icosahedron / Emerald Bio-crystal)
     const coreGeometry = new THREE.IcosahedronGeometry(1.8, 2);
     const coreMaterial = new THREE.MeshPhongMaterial({
-      color: 0x10b981,
+      color: 0x047857, // Imperial Deep Emerald
       emissive: 0x064e3b,
       wireframe: true,
       transparent: true,
-      opacity: 0.75,
-      shininess: 90,
+      opacity: 0.8,
+      shininess: 100,
     });
     const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     ecosystemGroup.add(coreMesh);
 
-    // 2. Inner Glowing Nucleus
+    // 2. Inner Glowing Nucleus (Gold Core)
     const innerGeometry = new THREE.SphereGeometry(1.1, 24, 24);
     const innerMaterial = new THREE.MeshBasicMaterial({
-      color: 0x34d399,
+      color: 0xc8931d, // Royal Gold
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.5,
       wireframe: false,
     });
     const innerSphere = new THREE.Mesh(innerGeometry, innerMaterial);
     ecosystemGroup.add(innerSphere);
 
-    // 3. Orbiting Molecular Nodes (Protein, Antioxidants, Water, Micronutrients)
+    // 3. Orbiting Molecular Nodes (Emerald, Gold, Amber, Sage, Champagne)
     const nodeColors = [
-      0x10b981, // Emerald (Veggies / Greens)
-      0x14b8a6, // Teal (Water / Hydration)
-      0x06b6d4, // Cyan (Protein molecules)
-      0x38bdf8, // Sky (Micronutrients)
-      0xf59e0b, // Amber (Carbs / Energy)
-      0xa855f7, // Purple (Antioxidants)
-      0x34d399, // Bright Green
+      0x047857, // Deep Emerald
+      0xc8931d, // Royal Gold
+      0xd97706, // Amber Gold
+      0x059669, // Vibrant Green
+      0xb45309, // Bronze Gold
+      0x0f766e, // Deep Teal
+      0xe5b338, // Bright Champagne Gold
     ];
 
     const orbitingNodes: THREE.Mesh[] = [];
@@ -71,20 +71,20 @@ export const NutritionSphere3D: React.FC = () => {
       const nodeMat = new THREE.MeshStandardMaterial({
         color,
         emissive: color,
-        emissiveIntensity: 0.6,
-        roughness: 0.2,
-        metalness: 0.8,
+        emissiveIntensity: 0.7,
+        roughness: 0.15,
+        metalness: 0.85,
       });
       const node = new THREE.Mesh(nodeGeo, nodeMat);
       ecosystemGroup.add(node);
       orbitingNodes.push(node);
     });
 
-    // 4. Orbiting Ring Lines
+    // 4. Orbiting Ring Lines (Gold & Emerald)
     const ringMaterial = new THREE.LineBasicMaterial({
-      color: 0x10b981,
+      color: 0xc8931d,
       transparent: true,
-      opacity: 0.25,
+      opacity: 0.35,
     });
 
     [2.6, 3.1, 3.5].forEach((radius) => {
@@ -101,14 +101,14 @@ export const NutritionSphere3D: React.FC = () => {
       ecosystemGroup.add(ring);
     });
 
-    // 5. Ambient Floating Particles Cloud
+    // 5. Ambient Floating Particles Cloud (Gold & Emerald stardust)
     const particleCount = 180;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
 
-    const c1 = new THREE.Color(0x10b981);
-    const c2 = new THREE.Color(0x06b6d4);
+    const c1 = new THREE.Color(0x047857); // Emerald
+    const c2 = new THREE.Color(0xc8931d); // Gold
 
     for (let i = 0; i < particleCount; i++) {
       const r = 3.5 + Math.random() * 2.5;
@@ -129,26 +129,26 @@ export const NutritionSphere3D: React.FC = () => {
     particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.07,
+      size: 0.08,
       vertexColors: true,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.85,
     });
 
     const particles = new THREE.Points(particleGeo, particleMat);
     ecosystemGroup.add(particles);
 
-    // 6. Lighting
-    const ambientLight = new THREE.AmbientLight(0x0a251b, 1.8);
+    // 6. Lighting (Warm Gold & Rich Emerald)
+    const ambientLight = new THREE.AmbientLight(0xfdf8eb, 2.2);
     scene.add(ambientLight);
 
-    const pointLightEmerald = new THREE.PointLight(0x10b981, 2.5, 50);
+    const pointLightEmerald = new THREE.PointLight(0x047857, 2.8, 50);
     pointLightEmerald.position.set(5, 5, 5);
     scene.add(pointLightEmerald);
 
-    const pointLightCyan = new THREE.PointLight(0x06b6d4, 2.2, 50);
-    pointLightCyan.position.set(-5, -4, 4);
-    scene.add(pointLightCyan);
+    const pointLightGold = new THREE.PointLight(0xc8931d, 3.0, 50);
+    pointLightGold.position.set(-5, -4, 4);
+    scene.add(pointLightGold);
 
     // Mouse Parallax Interaction
     let mouseX = 0;
@@ -248,8 +248,8 @@ export const NutritionSphere3D: React.FC = () => {
       <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
       {/* Decorative Glow Aura Behind 3D Object */}
-      <div className="absolute w-72 h-72 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
-      <div className="absolute w-56 h-56 rounded-full bg-cyan-500/15 blur-2xl pointer-events-none -z-10" />
+      <div className="absolute w-80 h-80 rounded-full bg-gold-400/15 blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
+      <div className="absolute w-64 h-64 rounded-full bg-primary-700/10 blur-2xl pointer-events-none -z-10" />
     </div>
   );
 };

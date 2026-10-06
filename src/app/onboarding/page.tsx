@@ -15,7 +15,6 @@ import {
   IndianRupee,
   AlertTriangle,
   Clock,
-  Zap,
 } from 'lucide-react';
 import { useNutrition } from '../../context/NutritionContext';
 import { GoalType, ActivityLevel, DietaryPreference } from '../../types/nutrition';
@@ -115,55 +114,54 @@ export default function OnboardingPage() {
   );
 
   return (
-    <div className="min-h-[88vh] py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col justify-center">
+    <div className="min-h-[88vh] py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col justify-center bg-[#FAF7F2]">
       
       {/* Step Progress Bar */}
       <div className="mb-8">
-        <div className="flex items-center justify-between text-xs font-bold text-slate-400 mb-2">
+        <div className="flex items-center justify-between text-xs font-bold text-primary-900/70 mb-2">
           <span>Step {currentStep} of {totalSteps}</span>
-          <span className="text-emerald-400">{Math.round((currentStep / totalSteps) * 100)}% Completed</span>
+          <span className="text-primary-800 font-extrabold">{Math.round((currentStep / totalSteps) * 100)}% Completed</span>
         </div>
-        <div className="w-full h-2 rounded-full bg-surface-100 overflow-hidden">
+        <div className="w-full h-2 rounded-full bg-surface-200 overflow-hidden">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 transition-all duration-500"
+            className="h-full rounded-full bg-gradient-to-r from-primary-800 via-primary-700 to-gold-500 transition-all duration-500"
             style={{ width: `${(currentStep / totalSteps) * 100}%` }}
           />
         </div>
       </div>
 
       {/* Main Wizard Card */}
-      <div className="relative p-6 sm:p-10 rounded-3xl bg-surface-200/80 border border-emerald-500/30 backdrop-blur-xl shadow-glass">
+      <div className="relative p-6 sm:p-10 rounded-3xl bg-white border border-gold-600/30 backdrop-blur-xl shadow-luxury-md">
         
         {/* Glow corner */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-48 h-48 bg-gold-400/10 blur-3xl pointer-events-none" />
 
         {isProcessingAI ? (
           /* Processing State Animation */
           <div className="py-16 text-center space-y-6 flex flex-col items-center justify-center">
-            <div className="relative w-24 h-24">
-              <div className="absolute inset-0 rounded-full border-4 border-emerald-500/20 border-t-emerald-400 animate-spin" />
-              <div className="absolute inset-3 rounded-full border-4 border-cyan-500/20 border-b-cyan-400 animate-spin-slow" />
-              <div className="w-full h-full flex items-center justify-center">
-                <Sparkles className="w-8 h-8 text-emerald-400 animate-pulse" />
+            <div className="relative w-24 h-24 flex items-center justify-center">
+              <div className="spinner-border w-20 h-20 border-[3px]" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Sparkles className="w-7 h-7 text-gold-600 animate-pulse" />
               </div>
             </div>
 
             <div className="space-y-2 max-w-md">
-              <h3 className="text-2xl font-black text-white">Synthesizing Your AI Nutrition Plan</h3>
-              <p className="text-sm font-medium text-emerald-400 animate-pulse">
+              <h3 className="font-serif text-2xl font-black text-primary-950">Synthesizing Your AI Nutrition Plan</h3>
+              <p className="text-sm font-bold text-primary-800 animate-pulse">
                 {aiStages[processingStage]}
               </p>
             </div>
 
             {/* Live calculated chips */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
-              <span className="px-3 py-1.5 rounded-xl bg-surface-100 border border-slate-700 text-xs text-slate-300">
+              <span className="px-3.5 py-1.5 rounded-xl bg-surface-100 border border-surface-300 text-xs text-primary-950 font-bold shadow-sm">
                 🔥 {previewTargets.dailyCalories} kcal Target
               </span>
-              <span className="px-3 py-1.5 rounded-xl bg-surface-100 border border-slate-700 text-xs text-cyan-300">
+              <span className="px-3.5 py-1.5 rounded-xl bg-gold-50 border border-gold-300 text-xs text-gold-900 font-bold shadow-sm">
                 💪 {previewTargets.proteinG}g Protein
               </span>
-              <span className="px-3 py-1.5 rounded-xl bg-surface-100 border border-slate-700 text-xs text-amber-300">
+              <span className="px-3.5 py-1.5 rounded-xl bg-primary-50 border border-primary-300 text-xs text-primary-900 font-bold shadow-sm">
                 💰 ₹{formData.weeklyBudgetInr}/wk Budget
               </span>
             </div>
@@ -176,37 +174,37 @@ export default function OnboardingPage() {
             {currentStep === 1 && (
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-2">
-                    <User className="w-3.5 h-3.5" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-100 border border-primary-300 text-primary-900 text-xs font-bold mb-2 shadow-sm">
+                    <User className="w-3.5 h-3.5 text-primary-700" />
                     <span>Personal Biometrics</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">Tell us about your body</h2>
-                  <p className="text-xs text-slate-400 mt-1">Used to compute your baseline Basal Metabolic Rate (BMR).</p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary-950">Tell us about your body</h2>
+                  <p className="text-xs text-primary-900/70 mt-1 font-medium">Used to compute your baseline Basal Metabolic Rate (BMR).</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-bold text-slate-300 block mb-1.5">Your Name</label>
+                    <label className="text-xs font-bold text-primary-950 block mb-1.5">Your Name</label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-surface-100 border border-slate-800 text-sm text-white focus:outline-none focus:border-emerald-500"
+                      className="w-full px-4 py-3 rounded-xl bg-surface-100 border border-surface-300 text-sm text-primary-950 focus:outline-none focus:border-gold-600 transition"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-300 block mb-1.5">Gender</label>
+                    <label className="text-xs font-bold text-primary-950 block mb-1.5">Gender</label>
                     <div className="grid grid-cols-3 gap-2">
                       {(['male', 'female', 'other'] as const).map(g => (
                         <button
                           key={g}
                           type="button"
                           onClick={() => setFormData({ ...formData, gender: g })}
-                          className={`py-3 rounded-xl text-xs font-bold uppercase transition ${
+                          className={`py-3 rounded-xl text-xs font-bold uppercase transition cursor-pointer ${
                             formData.gender === g
-                              ? 'bg-emerald-500 text-slate-950 shadow-glow-sm'
-                              : 'bg-surface-100 text-slate-300 border border-slate-800'
+                              ? 'bg-gradient-to-r from-primary-900 to-primary-800 text-gold-200 border border-gold-500/40 shadow-sm'
+                              : 'bg-surface-100 text-primary-900/70 border border-surface-300'
                           }`}
                         >
                           {g}
@@ -216,42 +214,42 @@ export default function OnboardingPage() {
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-300 block mb-1.5">Age (Years)</label>
+                    <label className="text-xs font-bold text-primary-950 block mb-1.5">Age (Years)</label>
                     <input
                       type="number"
                       value={formData.age}
                       onChange={e => setFormData({ ...formData, age: Number(e.target.value) })}
-                      className="w-full px-4 py-3 rounded-xl bg-surface-100 border border-slate-800 text-sm text-white focus:outline-none focus:border-emerald-500"
+                      className="w-full px-4 py-3 rounded-xl bg-surface-100 border border-surface-300 text-sm text-primary-950 focus:outline-none focus:border-gold-600 transition"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-300 block mb-1.5">Height (cm)</label>
+                    <label className="text-xs font-bold text-primary-950 block mb-1.5">Height (cm)</label>
                     <input
                       type="number"
                       value={formData.heightCm}
                       onChange={e => setFormData({ ...formData, heightCm: Number(e.target.value) })}
-                      className="w-full px-4 py-3 rounded-xl bg-surface-100 border border-slate-800 text-sm text-white focus:outline-none focus:border-emerald-500"
+                      className="w-full px-4 py-3 rounded-xl bg-surface-100 border border-surface-300 text-sm text-primary-950 focus:outline-none focus:border-gold-600 transition"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-300 block mb-1.5">Weight (kg)</label>
+                    <label className="text-xs font-bold text-primary-950 block mb-1.5">Weight (kg)</label>
                     <input
                       type="number"
                       value={formData.weightKg}
                       onChange={e => setFormData({ ...formData, weightKg: Number(e.target.value) })}
-                      className="w-full px-4 py-3 rounded-xl bg-surface-100 border border-slate-800 text-sm text-white focus:outline-none focus:border-emerald-500"
+                      className="w-full px-4 py-3 rounded-xl bg-surface-100 border border-surface-300 text-sm text-primary-950 focus:outline-none focus:border-gold-600 transition"
                     />
                   </div>
 
                   {/* BMI Calculation Card */}
-                  <div className="p-3.5 rounded-xl bg-surface-100/60 border border-slate-800 flex items-center justify-between">
+                  <div className="p-3.5 rounded-xl bg-gold-50 border border-gold-300/60 flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] text-slate-400 uppercase font-semibold block">Calculated BMI</span>
-                      <span className="text-lg font-black text-emerald-400">{bmi}</span>
+                      <span className="text-[10px] text-gold-900 uppercase font-bold block">Calculated BMI</span>
+                      <span className="font-serif text-lg font-black text-primary-950">{bmi}</span>
                     </div>
-                    <span className="text-xs text-slate-300 font-medium">
+                    <span className="text-xs text-primary-900 font-bold">
                       {bmi < 18.5 ? 'Underweight' : bmi < 24.9 ? 'Normal Weight' : 'Overweight'}
                     </span>
                   </div>
@@ -263,12 +261,12 @@ export default function OnboardingPage() {
             {currentStep === 2 && (
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold mb-2">
-                    <Target className="w-3.5 h-3.5" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-100 border border-gold-300 text-gold-900 text-xs font-bold mb-2 shadow-sm">
+                    <Target className="w-3.5 h-3.5 text-gold-700" />
                     <span>Primary Objective</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">What is your primary health goal?</h2>
-                  <p className="text-xs text-slate-400 mt-1">Saarthi will balance macro ratios and caloric energy accordingly.</p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary-950">What is your primary health goal?</h2>
+                  <p className="text-xs text-primary-900/70 mt-1 font-medium">Saarthi will balance macro ratios and caloric energy accordingly.</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -283,14 +281,14 @@ export default function OnboardingPage() {
                       key={item.id}
                       type="button"
                       onClick={() => setFormData({ ...formData, goal: item.id as GoalType })}
-                      className={`p-4 rounded-2xl border text-left transition ${
+                      className={`p-4 rounded-2xl border text-left transition cursor-pointer ${
                         formData.goal === item.id
-                          ? 'bg-emerald-950/40 border-emerald-500 shadow-glow-sm'
-                          : 'bg-surface-100/70 border-slate-800 hover:border-slate-700'
+                          ? 'bg-primary-50 border-primary-600 shadow-sm'
+                          : 'bg-surface-100 text-primary-900/80 border-surface-300 hover:border-gold-500/30'
                       }`}
                     >
-                      <h4 className="text-sm font-bold text-white mb-1">{item.title}</h4>
-                      <p className="text-xs text-slate-400">{item.desc}</p>
+                      <h4 className="font-serif text-sm font-bold text-primary-950 mb-1">{item.title}</h4>
+                      <p className="text-xs text-primary-900/70 font-medium">{item.desc}</p>
                     </button>
                   ))}
                 </div>
@@ -301,11 +299,11 @@ export default function OnboardingPage() {
             {currentStep === 3 && (
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-bold mb-2">
-                    <Activity className="w-3.5 h-3.5" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-100 border border-primary-300 text-primary-900 text-xs font-bold mb-2 shadow-sm">
+                    <Activity className="w-3.5 h-3.5 text-primary-700" />
                     <span>Physical Activity</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">What does your routine look like?</h2>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary-950">What does your routine look like?</h2>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -319,14 +317,14 @@ export default function OnboardingPage() {
                       key={act.id}
                       type="button"
                       onClick={() => setFormData({ ...formData, activityLevel: act.id as ActivityLevel })}
-                      className={`p-4 rounded-2xl border text-left transition ${
+                      className={`p-4 rounded-2xl border text-left transition cursor-pointer ${
                         formData.activityLevel === act.id
-                          ? 'bg-emerald-950/40 border-emerald-500 shadow-glow-sm'
-                          : 'bg-surface-100/70 border-slate-800 hover:border-slate-700'
+                          ? 'bg-primary-50 border-primary-600 shadow-sm'
+                          : 'bg-surface-100 text-primary-900/80 border-surface-300 hover:border-gold-500/30'
                       }`}
                     >
-                      <h4 className="text-sm font-bold text-white mb-1">{act.title}</h4>
-                      <p className="text-xs text-slate-400">{act.desc}</p>
+                      <h4 className="font-serif text-sm font-bold text-primary-950 mb-1">{act.title}</h4>
+                      <p className="text-xs text-primary-900/70 font-medium">{act.desc}</p>
                     </button>
                   ))}
                 </div>
@@ -337,11 +335,11 @@ export default function OnboardingPage() {
             {currentStep === 4 && (
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-2">
-                    <Salad className="w-3.5 h-3.5" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-100 border border-primary-300 text-primary-900 text-xs font-bold mb-2 shadow-sm">
+                    <Salad className="w-3.5 h-3.5 text-primary-700" />
                     <span>Dietary Identity</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">Select your dietary preference</h2>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary-950">Select your dietary preference</h2>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -355,14 +353,14 @@ export default function OnboardingPage() {
                       key={pref.id}
                       type="button"
                       onClick={() => setFormData({ ...formData, dietaryPreference: pref.id as DietaryPreference })}
-                      className={`p-4 rounded-2xl border text-left transition flex flex-col justify-between ${
+                      className={`p-4 rounded-2xl border text-left transition flex flex-col justify-between cursor-pointer ${
                         formData.dietaryPreference === pref.id
-                          ? 'bg-emerald-950/40 border-emerald-500 shadow-glow-sm'
-                          : 'bg-surface-100/70 border-slate-800 hover:border-slate-700'
+                          ? 'bg-primary-50 border-primary-600 shadow-sm'
+                          : 'bg-surface-100 text-primary-900/80 border-surface-300 hover:border-gold-500/30'
                       }`}
                     >
-                      <span className="text-sm font-bold text-white mb-1">{pref.label}</span>
-                      <span className="text-[11px] text-slate-400">{pref.desc}</span>
+                      <span className="font-serif text-sm font-bold text-primary-950 mb-1">{pref.label}</span>
+                      <span className="text-[11px] text-primary-900/70 font-medium">{pref.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -373,12 +371,12 @@ export default function OnboardingPage() {
             {currentStep === 5 && (
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold mb-2">
-                    <Globe className="w-3.5 h-3.5" />
-                    <span>Flavor & Regional Palette</span>
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-100 border border-gold-300 text-gold-900 text-xs font-bold mb-2 shadow-sm">
+                    <Globe className="w-3.5 h-3.5 text-gold-700" />
+                    <span>Flavor &amp; Regional Palette</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">Choose your preferred cuisines</h2>
-                  <p className="text-xs text-slate-400 mt-1">Select one or more for diverse meal suggestions.</p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary-950">Choose your preferred cuisines</h2>
+                  <p className="text-xs text-primary-900/70 mt-1 font-medium">Select one or more for diverse meal suggestions.</p>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -397,10 +395,10 @@ export default function OnboardingPage() {
                               : [...formData.cuisinePreferences, cuisine]
                           });
                         }}
-                        className={`p-4 rounded-2xl border text-center font-bold text-xs transition ${
+                        className={`p-4 rounded-2xl border text-center font-bold text-xs transition cursor-pointer ${
                           isSelected
-                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-glow-sm'
-                            : 'bg-surface-100/70 text-slate-300 border-slate-800 hover:border-slate-700'
+                            ? 'bg-gradient-to-r from-primary-900 to-primary-800 text-gold-200 border-gold-500/40 shadow-sm'
+                            : 'bg-surface-100 text-primary-900/80 border-surface-300 hover:border-gold-500/30'
                         }`}
                       >
                         {cuisine}
@@ -415,18 +413,18 @@ export default function OnboardingPage() {
             {currentStep === 6 && (
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold mb-2">
-                    <IndianRupee className="w-3.5 h-3.5" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-100 border border-gold-300 text-gold-900 text-xs font-bold mb-2 shadow-sm">
+                    <IndianRupee className="w-3.5 h-3.5 text-gold-700" />
                     <span>Budget Calibration (USP)</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">What is your weekly food budget?</h2>
-                  <p className="text-xs text-slate-400 mt-1">Saarthi will optimize ingredients to maximize nutrition per rupee spent.</p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary-950">What is your weekly food budget?</h2>
+                  <p className="text-xs text-primary-900/70 mt-1 font-medium">Saarthi will optimize ingredients to maximize nutrition per rupee spent.</p>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 rounded-2xl bg-surface-100 border border-emerald-500/30">
-                    <span className="text-sm font-bold text-slate-300">Target Weekly Grocery Budget:</span>
-                    <span className="text-2xl font-black text-emerald-400">₹{formData.weeklyBudgetInr}</span>
+                  <div className="flex items-center justify-between p-4 rounded-2xl bg-surface-100 border border-gold-500/30">
+                    <span className="text-sm font-bold text-primary-950">Target Weekly Grocery Budget:</span>
+                    <span className="font-serif text-2xl font-black text-gold-800">₹{formData.weeklyBudgetInr}</span>
                   </div>
 
                   <input
@@ -436,7 +434,7 @@ export default function OnboardingPage() {
                     step="100"
                     value={formData.weeklyBudgetInr}
                     onChange={e => setFormData({ ...formData, weeklyBudgetInr: Number(e.target.value) })}
-                    className="w-full accent-emerald-500 h-2 bg-slate-800 rounded-lg cursor-pointer"
+                    className="w-full accent-gold-600 h-2 bg-surface-200 rounded-lg cursor-pointer"
                   />
 
                   <div className="grid grid-cols-3 gap-3 pt-2">
@@ -449,14 +447,14 @@ export default function OnboardingPage() {
                         key={b.amount}
                         type="button"
                         onClick={() => setFormData({ ...formData, weeklyBudgetInr: b.amount })}
-                        className={`p-3 rounded-2xl border text-left transition ${
+                        className={`p-3 rounded-2xl border text-left transition cursor-pointer ${
                           formData.weeklyBudgetInr === b.amount
-                            ? 'bg-emerald-950/40 border-emerald-500'
-                            : 'bg-surface-100/70 border-slate-800'
+                            ? 'bg-gold-100 border-gold-500 shadow-sm'
+                            : 'bg-surface-100 text-primary-900/80 border-surface-300'
                         }`}
                       >
-                        <span className="text-xs font-bold text-white block mb-1">{b.label}</span>
-                        <span className="text-[10px] text-slate-400 block">{b.sub}</span>
+                        <span className="font-serif text-xs font-bold text-primary-950 block mb-1">{b.label}</span>
+                        <span className="text-[10px] text-primary-900/70 block font-medium">{b.sub}</span>
                       </button>
                     ))}
                   </div>
@@ -468,11 +466,11 @@ export default function OnboardingPage() {
             {currentStep === 7 && (
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold mb-2">
-                    <AlertTriangle className="w-3.5 h-3.5" />
-                    <span>Sensitivities & Restrictions</span>
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-100 border border-rose-300 text-rose-900 text-xs font-bold mb-2 shadow-sm">
+                    <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
+                    <span>Sensitivities &amp; Restrictions</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">Any food allergies or exclusions?</h2>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary-950">Any food allergies or exclusions?</h2>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -491,10 +489,10 @@ export default function OnboardingPage() {
                               : [...formData.allergies, tag]
                           });
                         }}
-                        className={`p-3.5 rounded-2xl border text-center text-xs font-bold transition ${
+                        className={`p-3.5 rounded-2xl border text-center text-xs font-bold transition cursor-pointer ${
                           isSelected
-                            ? 'bg-rose-500/20 text-rose-300 border-rose-500/50 shadow'
-                            : 'bg-surface-100/70 text-slate-300 border-slate-800'
+                            ? 'bg-rose-100 text-rose-900 border-rose-400 shadow-sm'
+                            : 'bg-surface-100 text-primary-900/80 border-surface-300 hover:border-gold-500/30'
                         }`}
                       >
                         {tag}
@@ -509,12 +507,12 @@ export default function OnboardingPage() {
             {currentStep === 8 && (
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-2">
-                    <Clock className="w-3.5 h-3.5" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-100 border border-primary-300 text-primary-900 text-xs font-bold mb-2 shadow-sm">
+                    <Clock className="w-3.5 h-3.5 text-primary-700" />
                     <span>Daily Structure</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">Confirm your daily meal rhythm</h2>
-                  <p className="text-xs text-slate-400 mt-1">Saarthi will partition daily calories and protein across your selected meals.</p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary-950">Confirm your daily meal rhythm</h2>
+                  <p className="text-xs text-primary-900/70 mt-1 font-medium">Saarthi will partition daily calories and protein across your selected meals.</p>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -524,10 +522,10 @@ export default function OnboardingPage() {
                     { id: 'snacks', label: 'Snacks / Fuel', time: '05:00 PM' },
                     { id: 'dinner', label: 'Dinner', time: '08:30 PM' },
                   ].map(m => (
-                    <div key={m.id} className="p-4 rounded-2xl bg-surface-100 border border-emerald-500/30 text-center">
-                      <Check className="w-4 h-4 text-emerald-400 mx-auto mb-1" />
-                      <span className="text-xs font-bold text-white block">{m.label}</span>
-                      <span className="text-[10px] text-slate-400 mt-0.5 block">{m.time}</span>
+                    <div key={m.id} className="p-4 rounded-2xl bg-surface-100 border border-gold-500/30 text-center shadow-sm">
+                      <Check className="w-4 h-4 text-primary-700 mx-auto mb-1" />
+                      <span className="font-serif text-xs font-bold text-primary-950 block">{m.label}</span>
+                      <span className="text-[10px] text-primary-900/60 mt-0.5 block font-medium">{m.time}</span>
                     </div>
                   ))}
                 </div>
@@ -535,12 +533,12 @@ export default function OnboardingPage() {
             )}
 
             {/* Wizard Navigation Footer */}
-            <div className="pt-6 border-t border-slate-800 flex items-center justify-between">
+            <div className="pt-6 border-t border-surface-200 flex items-center justify-between">
               <button
                 type="button"
                 onClick={handlePrev}
                 disabled={currentStep === 1}
-                className="px-5 py-3 rounded-xl bg-surface-100 disabled:opacity-30 border border-slate-800 text-slate-300 hover:text-white text-xs font-bold transition flex items-center gap-2"
+                className="px-5 py-3 rounded-xl bg-surface-100 disabled:opacity-40 border border-surface-300 text-primary-950 text-xs font-bold transition flex items-center gap-2 cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back</span>
@@ -549,10 +547,10 @@ export default function OnboardingPage() {
               <button
                 type="button"
                 onClick={handleNext}
-                className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-black text-xs transition shadow-glow-sm flex items-center gap-2"
+                className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-primary-900 via-primary-800 to-primary-900 hover:from-primary-800 text-gold-200 border border-gold-500/40 font-bold text-xs transition shadow-luxury-sm flex items-center gap-2 cursor-pointer"
               >
                 <span>{currentStep === totalSteps ? 'Generate My AI Diet' : 'Continue'}</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-gold-300" />
               </button>
             </div>
 

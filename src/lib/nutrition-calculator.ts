@@ -1,4 +1,4 @@
-import { GoalType, ActivityLevel, DietaryPreference, NutritionTargets } from '../types/nutrition';
+import { GoalType, ActivityLevel, NutritionTargets } from '../types/nutrition';
 
 export function calculateBMR(gender: 'male' | 'female' | 'other', weightKg: number, heightCm: number, age: number): number {
   // Mifflin-St Jeor Formula

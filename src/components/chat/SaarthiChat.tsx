@@ -45,18 +45,18 @@ export const SaarthiChat: React.FC = () => {
         <button
           onClick={() => setIsChatOpen(!isChatOpen)}
           aria-label="Open Saarthi AI Chat"
-          className="relative group p-4 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 shadow-glow-md hover:shadow-glow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
+          className="relative group p-4 rounded-full bg-gradient-to-r from-primary-900 via-primary-800 to-gold-600 border border-gold-400/50 shadow-luxury-lg hover:shadow-gold-glow transition-all duration-300 transform hover:scale-105 flex items-center justify-center cursor-pointer"
         >
           {/* Animated pulse ring */}
-          <span className="absolute -inset-1 rounded-full bg-emerald-400 opacity-40 group-hover:opacity-75 blur-md animate-pulse-glow" />
+          <span className="absolute -inset-1 rounded-full bg-gold-400 opacity-30 group-hover:opacity-60 blur-md animate-pulse-glow" />
           
           <div className="relative flex items-center justify-center">
             {isChatOpen ? (
-              <ChevronDown className="w-7 h-7 text-slate-950 stroke-[2.5]" />
+              <ChevronDown className="w-6 h-6 text-white stroke-[2.5]" />
             ) : (
               <>
-                <Bot className="w-7 h-7 text-slate-950 stroke-[2.5]" />
-                <Sparkles className="w-3.5 h-3.5 text-white absolute -top-1 -right-1 animate-ping" />
+                <Bot className="w-6 h-6 text-gold-200 stroke-[2.5]" />
+                <Sparkles className="w-3.5 h-3.5 text-gold-300 absolute -top-1 -right-1 animate-ping" />
               </>
             )}
           </div>
@@ -65,24 +65,24 @@ export const SaarthiChat: React.FC = () => {
 
       {/* Slide-Up Chat Window */}
       {isChatOpen && (
-        <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[92vw] sm:w-[420px] h-[580px] max-h-[82vh] bg-surface-DEFAULT/95 border border-emerald-500/30 rounded-3xl shadow-2xl backdrop-blur-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
+        <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[92vw] sm:w-[420px] h-[580px] max-h-[82vh] bg-[#FAF7F2] border border-gold-600/35 rounded-3xl shadow-2xl backdrop-blur-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
           
           {/* Header */}
-          <div className="p-4 bg-surface-100/90 border-b border-slate-800 flex items-center justify-between">
+          <div className="p-4 bg-white border-b border-surface-200 flex items-center justify-between shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 p-0.5 shadow-glow-sm">
-                <div className="w-full h-full bg-surface rounded-[10px] flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-emerald-400" />
+              <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-primary-800 to-gold-600 p-0.5 shadow-sm">
+                <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-primary-800" />
                 </div>
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="text-sm font-bold text-white">Saarthi AI</h3>
-                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/20">
+                  <h3 className="font-serif text-sm font-bold text-primary-950">Saarthi AI Nutritionist</h3>
+                  <span className="text-[9px] font-bold text-primary-800 bg-primary-50 px-1.5 py-0.2 rounded border border-primary-200">
                     Online
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-400">
+                <p className="text-[10px] text-primary-900/60 font-medium">
                   Calibrated for {user.name.split(' ')[0]} ({profile.dailyCalories} kcal • {profile.proteinG}g protein)
                 </p>
               </div>
@@ -90,7 +90,7 @@ export const SaarthiChat: React.FC = () => {
 
             <button
               onClick={() => setIsChatOpen(false)}
-              className="p-1.5 rounded-lg bg-surface-200 text-slate-400 hover:text-white transition"
+              className="p-1.5 rounded-lg bg-surface-100 text-primary-900/60 hover:text-primary-950 transition"
             >
               <X className="w-4 h-4" />
             </button>
@@ -106,20 +106,20 @@ export const SaarthiChat: React.FC = () => {
                   className={`flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
                 >
                   <div
-                    className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold ${
+                    className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold shadow-sm ${
                       isUser
-                        ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                        : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                        ? 'bg-gold-100 text-gold-800 border border-gold-300'
+                        : 'bg-primary-100 text-primary-800 border border-primary-300'
                     }`}
                   >
                     {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                   </div>
 
                   <div
-                    className={`max-w-[82%] rounded-2xl px-4 py-3 text-xs leading-relaxed ${
+                    className={`max-w-[82%] rounded-2xl px-4 py-3 text-xs leading-relaxed shadow-sm ${
                       isUser
-                        ? 'bg-emerald-500 text-slate-950 font-medium rounded-tr-none'
-                        : 'bg-surface-100/90 text-slate-200 border border-slate-800 rounded-tl-none prose prose-invert prose-xs'
+                        ? 'bg-gradient-to-r from-primary-900 to-primary-800 text-gold-100 font-medium rounded-tr-none border border-gold-500/30'
+                        : 'bg-white text-primary-950 border border-gold-500/20 rounded-tl-none prose prose-xs'
                     }`}
                   >
                     {/* Render message markdown/text */}
@@ -128,8 +128,8 @@ export const SaarthiChat: React.FC = () => {
                     </div>
 
                     <div
-                      className={`text-[9px] mt-1.5 flex items-center justify-end ${
-                        isUser ? 'text-slate-900/70 font-semibold' : 'text-slate-500'
+                      className={`text-[9px] mt-1.5 flex items-center justify-end font-medium ${
+                        isUser ? 'text-gold-300/80' : 'text-primary-900/50'
                       }`}
                     >
                       {msg.timestamp}
@@ -140,9 +140,9 @@ export const SaarthiChat: React.FC = () => {
             })}
 
             {isTyping && (
-              <div className="flex items-center gap-2 text-xs text-slate-400 bg-surface-100/60 p-3 rounded-2xl border border-slate-800/80 w-fit">
-                <Sparkles className="w-4 h-4 text-emerald-400 animate-spin" />
-                <span>Saarthi is thinking...</span>
+              <div className="flex items-center gap-2 text-xs text-primary-900 bg-white p-3 rounded-2xl border border-gold-500/20 shadow-sm w-fit">
+                <div className="spinner-border spinner-border-sm" />
+                <span className="font-medium">Saarthi is analyzing nutrition data...</span>
               </div>
             )}
 
@@ -150,12 +150,12 @@ export const SaarthiChat: React.FC = () => {
           </div>
 
           {/* Quick Prompts Bar */}
-          <div className="px-3 py-2 bg-surface-200/50 border-t border-slate-800/80 overflow-x-auto flex gap-1.5 custom-scrollbar">
+          <div className="px-3 py-2 bg-surface-100/70 border-t border-surface-200 overflow-x-auto flex gap-1.5 custom-scrollbar">
             {quickPrompts.map((prompt, i) => (
               <button
                 key={i}
                 onClick={() => handleSend(prompt)}
-                className="whitespace-nowrap px-2.5 py-1 rounded-full bg-surface-100 hover:bg-slate-800 border border-slate-700/60 text-[10px] text-slate-300 hover:text-emerald-300 transition"
+                className="whitespace-nowrap px-3 py-1 rounded-full bg-white hover:bg-gold-50 border border-gold-500/25 text-[10px] text-primary-950 hover:text-gold-800 font-medium transition shadow-sm"
               >
                 {prompt}
               </button>
@@ -163,7 +163,7 @@ export const SaarthiChat: React.FC = () => {
           </div>
 
           {/* Message Input Box */}
-          <div className="p-3 bg-surface-100/90 border-t border-slate-800">
+          <div className="p-3 bg-white border-t border-surface-200 shadow-sm">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -176,12 +176,12 @@ export const SaarthiChat: React.FC = () => {
                 placeholder="Ask Saarthi about meals, budget, macros..."
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="flex-1 bg-surface-200 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                className="flex-1 bg-surface-100 border border-surface-300 rounded-xl px-3.5 py-2.5 text-xs text-primary-950 placeholder-primary-900/40 focus:outline-none focus:border-gold-600 transition"
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isTyping}
-                className="p-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:opacity-40 text-slate-950 font-bold transition shadow-glow-sm flex items-center justify-center shrink-0"
+                className="p-2.5 rounded-xl bg-gradient-to-r from-primary-900 to-primary-800 hover:from-primary-800 disabled:opacity-40 text-gold-200 font-bold transition shadow-luxury-sm flex items-center justify-center shrink-0 border border-gold-500/30 cursor-pointer"
               >
                 <Send className="w-4 h-4" />
               </button>

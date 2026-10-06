@@ -6,8 +6,8 @@ import { Footer } from '../components/layout/Footer';
 import { SaarthiChat } from '../components/chat/SaarthiChat';
 
 export const metadata: Metadata = {
-  title: 'NutriSaarthi — Your AI Companion for Smarter Nutrition',
-  description: 'Futuristic AI-powered personalized nutrition and budget-aware diet recommendation platform.',
+  title: 'NutriSaarthi — AI Bio-Adaptive Nutrition & Diet Intelligence',
+  description: 'Luxury AI-powered personalized nutrition and budget-aware diet recommendation platform crafted with bio-intelligence.',
   keywords: 'AI diet planner, nutrition intelligence, meal planner, calorie tracker, food scanner, healthy recipes, macro tracker',
 };
 
@@ -17,11 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-background text-foreground antialiased selection:bg-emerald-500 selection:text-slate-950 flex flex-col min-h-screen">
+    <html lang="en" className="light">
+      <body className="bg-background text-foreground antialiased selection:bg-gold-500 selection:text-white flex flex-col min-h-screen">
         <NutritionProvider>
           <Navbar />
-          <main className="flex-1 pt-16">
+          <main className="flex-1 pt-20">
             {children}
           </main>
           <Footer />
